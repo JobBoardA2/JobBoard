@@ -3,7 +3,7 @@ from flask import Flask
 from flask.cli import with_appcontext, AppGroup
 
 from App.database import db, get_migrate
-from App.models import User
+from App.models import User,Recruiter
 from App.main import create_app
 from App.controllers import ( create_user, get_all_users_json, get_all_users, initialize )
 
@@ -67,3 +67,15 @@ def user_tests_command(type):
     
 
 app.cli.add_command(test)
+
+recruiter_cli = AppGroup('recruiter', help='Recruiter object commands') 
+
+@recruiter.cli.command('create-recruiter')
+@click.argument('recruiter_id')
+@click.argument('name')
+@click.argument('email')
+@click.argument('company_name')
+def create_recruiter_command(recruiter_id,name, email, company_name):
+    create_recruiter(recruiter_id,name, email, company_name)
+
+app.cli.add_command(recruiter_cli)
