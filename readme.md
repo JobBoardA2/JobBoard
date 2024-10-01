@@ -1,3 +1,37 @@
+# CLI Commands
+
+This creates a recruiter :
+flask recruiter create-recruiter 
+Eg. flask recruiter create-recruiter "John Doe" john@example.com  "Cloud Inc."
+
+This creates a job :
+flask job create-job
+Eg. flask job create-job 1 "Software Engineer" "Develop applications" 120000 "New York"   
+
+This creates an applicant:
+flask applicant create-applicant
+Eg. flask applicant create-applicant "Jane Doe" "JaneDoe@gmail.com"
+
+This allows the recruiter to view applicants : 
+flask recruiter view-applicants
+Eg.flask recruiter view-applicants 1
+
+This allows applicant to view jobs available :
+flask applicant view-job
+Eg. flask applicant view-job 1 
+
+This allows applicants to view recruiters :
+flask applicant view-recruiter
+Eg. flask applicant view-recruiter 1 
+
+This allows applicants to apply for job :
+flask application Apply-job
+Eg. flask application Apply-job 1 1
+
+This allows recruiter to view applications : 
+flask recruiter view-applications
+Eg. flask recruiter view-applications 1
+
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/uwidcit/flaskmvc)
 <a href="https://render.com/deploy?repo=https://github.com/uwidcit/flaskmvc">
   <img src="https://render.com/images/deploy-to-render-button.svg" alt="Deploy to Render">
