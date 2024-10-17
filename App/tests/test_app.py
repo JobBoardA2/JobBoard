@@ -9,6 +9,7 @@ from App.models import Recruiter
 from App.controllers import *
 from App.models import Job
 from App.models import Applicant
+from App.models import Application
 from App.controllers import (
     create_user,
     get_all_users_json,
@@ -105,7 +106,30 @@ class ApplicantUnitTests(unittest.TestCase):
         actual_output = applicant.view_appliant_details()
         self.assertEqual(actual_output,expected_output)
 
-# class ApplicationUnitTests(unittest.TestCase):
+class ApplicationUnitTests(unittest.TestCase):
+    def test_create_applicantion(self):
+        application = Application(1,1,1)
+        assert application.applicant_id == 1
+
+    def test_get_all_applications_json(self):
+        application = Application(1,1,1)
+        expected_output = {            
+            'application_id': 1,
+            'job_id': 1,
+            'applicant_id': 1
+         }
+        actual_output = application.view_application_details()
+        self.assertDictEqual(actual_output,expected_output)
+
+    def test_get_all_applications(self):
+        application = Application(1,1,1)
+        expected_output = {            
+            'application_id': 1,
+            'job_id': 1,
+            'applicant_id': 1
+         }
+        actual_output = application.view_application_details()
+        self.assertEqual(actual_output,expected_output)   
 
 
 
@@ -148,4 +172,5 @@ class UsersIntegrationTests(unittest.TestCase):
         update_user(1, "ronnie")
         user = get_user(1)
         assert user.username == "ronnie"
-        
+    
+    
