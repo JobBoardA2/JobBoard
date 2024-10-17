@@ -1,9 +1,14 @@
 import os, tempfile, pytest, logging, unittest
 from werkzeug.security import check_password_hash, generate_password_hash
 
+from App.controllers.recruiter import create_recruiter, get_all_recruiters, get_all_recruiters_json
 from App.main import create_app
 from App.database import db, create_db
 from App.models import User
+from App.models import Recruiter
+from App.controllers import *
+from App.models import Job
+from App.models import Applicant
 from App.controllers import (
     create_user,
     get_all_users_json,
@@ -42,6 +47,74 @@ class UserUnitTests(unittest.TestCase):
         user = User("bob", password)
         assert user.check_password(password)
 
+class RecruiterUnitTests(unittest.TestCase):
+    def test_new_Recruiter(self):
+        recruiter = Recruiter("Jane Doe","JaneDoe@mail.com","Cloud.Inc")
+        assert recruiter.name == "Jane Doe"
+
+    def test_Recruiter_get_json(self):
+        recruiter = Recruiter("Jane Doe","JaneDoe@mail.com","Cloud.Inc")
+        recruiter_json = recruiter.view_recruiters_details()
+        expected_recruiter_json = {
+        'recruiter_id': None,
+        "name": "Jane Doe",
+        "email": "JaneDoe@mail.com",
+        "company_name": "Cloud.Inc"
+        }
+        self.assertDictEqual(recruiter_json,expected_recruiter_json)
+
+    def test_get_all_recruiters(self):
+        recruiter = Recruiter("Jane Doe","jane@example.com","Cloud Inc.")
+        expected_output = {'recruiter_id': None,"name": "Jane Doe", "email": "jane@example.com", "company_name": "Cloud Inc."}
+        actual_output = recruiter.view_recruiters_details()
+        self.assertEqual(actual_output, expected_output)
+
+class JobUnitTests(unittest.TestCase):
+
+    def test_create_Job(self):
+        job = Job(1,"Software Engineer", "Develop applications" ,120000 ,"New York") 
+        assert job.job_title == "Software Engineer"
+
+    def test_get_all_jobs_json(self):
+        job = Job(1,"Software Engineer", "Develop applications" ,120000 ,"New York") 
+        expected_output = {"job_title":"Software Engineer" ,"description":"Develop applications", "salary":120000, "location":"New York"}
+        actual_output = job.view_job_details()
+        self.assertDictEqual(actual_output,expected_output)
+
+    def test_get_all_jobs(self):
+        job = Job(1,"Software Engineer", "Develop applications" ,120000 ,"New York") 
+        expected_output = {"job_title":"Software Engineer" ,"description":"Develop applications", "salary":120000, "location":"New York"}
+        actual_output = job.view_job_details()
+        self.assertEqual(actual_output,expected_output)
+
+class ApplicantUnitTests(unittest.TestCase):
+
+    def test_create_applicant(self):
+        applicant = Applicant("Jane Doe","JaneDoe@gmail.com")
+        assert applicant.name == "Jane Doe"
+
+    def test_get_all_applicants_json(self):
+        applicant = Applicant("Jane Doe","JaneDoe@gmail.com")
+        expected_output = {"applicant_id":None,"name":"Jane Doe","email":"JaneDoe@gmail.com"}
+        actual_output = applicant.view_appliant_details()
+        self.assertDictEqual(actual_output,expected_output)
+
+    def test_get_all_applicants(self):
+        applicant = Applicant("Jane Doe","JaneDoe@gmail.com")
+        expected_output = {"applicant_id":None ,"name":"Jane Doe","email":"JaneDoe@gmail.com"}
+        actual_output = applicant.view_appliant_details()
+        self.assertEqual(actual_output,expected_output)
+
+# class ApplicationUnitTests(unittest.TestCase):
+
+
+
+
+
+
+
+
+
 '''
     Integration Tests
 '''
@@ -76,4 +149,3 @@ class UsersIntegrationTests(unittest.TestCase):
         user = get_user(1)
         assert user.username == "ronnie"
         
-
