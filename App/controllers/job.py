@@ -15,8 +15,10 @@ def create_job(recruiter_id, job_title,description, salary, location):
         db.session.add(job)
         db.session.commit()
         print(f"Job '{job_title}' created for recruiter {recruiter.name}")
+        return job
     else:
          print(f"Recruiter with ID {recruiter_id} not found.")
+    
 
 def get_all_jobs():
     return Job.query.all()

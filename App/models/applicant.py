@@ -13,8 +13,11 @@ class Applicant(db.Model):
     email = db.Column(db.String(100), nullable=False, unique=True)
 
     applications = db.relationship('Application', backref='applicant', lazy=True)
-
-    def view_appliant_details(self):
+    def __init__(self,name,email):
+            self.name = name
+            self.email = email
+    
+    def view_applicant_details(self):
         return{
             'applicant_id':self.applicant_id,
             'name':self.name,

@@ -17,7 +17,7 @@ def get_all_applicants_json():
     applicants = Applicant.query.all()
     if not applicants:
         return []
-    applicants = [applicant.view_appliant_details() for applicant in applicants]
+    applicants = [applicant.view_applicant_details() for applicant in applicants]
     return applicants
 
 def get_all_jobs_json():
@@ -38,5 +38,5 @@ def get_all_applications_json():
     applications = Application.query.all()
     if not applications:
         return []
-    applications = [application.view_appliant_details() for application in applications]
+    applications = [application.view_application_details() for application in applications]
     return applications 

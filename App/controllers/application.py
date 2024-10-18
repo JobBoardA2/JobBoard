@@ -11,6 +11,7 @@ def create_application(job_id,applicant_id):
         db.session.add(application)
         db.session.commit()
         print(f"Application of '{applicant.applicant_id}' created for job {job.job_id}")
+        return application
     else:
          print(f"Application Error.")
 
