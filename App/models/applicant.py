@@ -17,7 +17,7 @@ class Applicant(db.Model):
             self.name = name
             self.email = email
     
-    def view_appliant_details(self):
+    def view_applicant_details(self):
         return{
             'applicant_id':self.applicant_id,
             'name':self.name,

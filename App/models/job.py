@@ -29,6 +29,7 @@ class Job(db.Model):
 
     def view_job_details(self):
         return {
+            # 'job_id': self.job_id,
             'job_title': self.job_title,
             'description': self.description,
             'salary': self.salary,

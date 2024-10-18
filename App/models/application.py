@@ -9,8 +9,7 @@ class Application(db.Model):
     job_id = db.Column(db.Integer, db.ForeignKey('job.job_id'), nullable=False)
     applicant_id = db.Column(db.Integer, db.ForeignKey('applicant.applicant_id'), nullable=False)
     
-    def __init__(self,application_id,job_id,applicant_id):
-        self.application_id = application_id
+    def __init__(self,job_id,applicant_id):
         self.job_id = job_id
         self.applicant_id = applicant_id
 
