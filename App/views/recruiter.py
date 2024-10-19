@@ -8,7 +8,7 @@ recruiter_views = Blueprint('recruiter_views', __name__, template_folder='../tem
 
 # Endpoint to create a recruiter
 @recruiter_views.route('/api/recruiters', methods=['POST'])
-@jwt_required()
+# @jwt_required()
 def create_recruiter_endpoint():
     data = request.json
     name = data.get('name')
@@ -24,7 +24,7 @@ def create_recruiter_endpoint():
 
 # Endpoint to get all recruiters
 @recruiter_views.route('/api/recruiters', methods=['GET'])
-@jwt_required()
+# @jwt_required()
 def get_recruiters_endpoint():
     recruiters = get_all_recruiters_json()
     return jsonify(recruiters), 200
